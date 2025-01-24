@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import java.util.List;
-import java.util.UUID;
-
 @Entity
 @Data
 @Table(name = "categories")

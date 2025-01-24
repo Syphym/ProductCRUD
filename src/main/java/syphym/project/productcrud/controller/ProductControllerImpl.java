@@ -19,14 +19,14 @@ public class ProductControllerImpl {
 
 
     @GetMapping
-    public String sanityCheck(){
+    public String sanityCheck() {
         return "CodeBase is running as intended";
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Product getProductByID(@PathVariable String id){
+    public Product getProductByID(@PathVariable String id) {
         return productRepository.findById(UUID.fromString(id)).get();
     }
 }

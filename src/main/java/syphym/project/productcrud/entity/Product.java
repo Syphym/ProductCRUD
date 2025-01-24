@@ -6,9 +6,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 import syphym.project.productcrud.enums.RegionEnums;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -17,7 +21,7 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @Column(name = "id", columnDefinition = "BINARY(16)")
+    @Column(name = "id")
     private UUID id;
 
     @Size(min = 20, message = "Description must be at least 20 characters long")
@@ -32,15 +36,18 @@ public class Product {
     @Column(name = "manufacturer", nullable = false)
     private String manufacturer;
 
-    @Column(name = "category_id")
-    private UUID categoryID;
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
-    @Enumerated(EnumType.STRING)
+
     @Column(name = "region", nullable = false)
+    @Enumerated(EnumType.STRING)
     private RegionEnums region;
 
-    @PrePersist
-    public void prePersist() {
-        this.id = UUID.randomUUID();
-    }
+    @CreationTimestamp
+    private LocalDateTime created;
+
+    @UpdateTimestamp
+    private LocalDateTime updated;
 }

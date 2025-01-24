@@ -13,19 +13,15 @@ import java.util.UUID;
 public class Category {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
+    private Integer id;
 
     @Size(min = 20, message = "Name must be at least 20 characters long")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    private List<Product> products;
-
-    @PrePersist
-    public void prePersist() {
-        this.id = UUID.randomUUID();
-    }
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "category_id")
+//    private List<Product> products;
 }

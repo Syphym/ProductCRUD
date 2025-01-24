@@ -20,8 +20,4 @@ public class Category {
     @Size(min = 20, message = "Name must be at least 20 characters long")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
-
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "category_id")
-//    private List<Product> products;
 }

@@ -36,10 +36,10 @@ public class Product {
     @Column(name = "manufacturer", nullable = false)
     private String manufacturer;
 
+    //KEEP IN MIND YOU NEED TO PUT THIS ANNOTATION WHERE YOU THINK IS THE PRIMARY TABLE
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-
 
     @Column(name = "region", nullable = false)
     @Enumerated(EnumType.STRING)

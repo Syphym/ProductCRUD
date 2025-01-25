@@ -2,23 +2,22 @@ package syphym.project.productcrud.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import syphym.project.productcrud.dto.ProductResponse;
 import syphym.project.productcrud.entity.Product;
-import syphym.project.productcrud.repository.ProductRepository;
+import syphym.project.productcrud.service.ProductService;
 
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/SanityCheck")
 public class ProductControllerImpl {
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
-    public ProductControllerImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductControllerImpl(ProductService productService) {
+        this.productService = productService;
     }
 
-
-    @GetMapping
+    @GetMapping("/SanityCheck")
     public String sanityCheck() {
         return "CodeBase is running as intended";
     }
@@ -27,6 +26,13 @@ public class ProductControllerImpl {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public Product getProductByID(@PathVariable String id) {
-        return productRepository.findById(UUID.fromString(id)).get();
+       return productService.getProductByID(id);
     }
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public ProductResponse getAllProducts() {
+        return productService.getProducts();
+    }
+
 }

@@ -26,13 +26,21 @@ public class ProductControllerImpl {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public Product getProductByID(@PathVariable String id) {
-       return productService.getProductByID(id);
+        return productService.getProductByID(id);
     }
+
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public ProductResponse getAllProducts() {
         return productService.getProducts();
+    }
+
+    @GetMapping("/all/ordered")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public ProductResponse getAllOrderedProducts(@RequestParam String orderBy) {
+        return productService.getProductsOrderBy(orderBy);
     }
 
 }

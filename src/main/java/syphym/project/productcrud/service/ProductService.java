@@ -9,7 +9,9 @@ public interface ProductService {
 
     Product getProductByID(String id);
 
-   ProductResponse getProducts();
+    ProductResponse getProducts();
+
+    ProductResponse getProductsOrderBy(String order);
 
 
 }

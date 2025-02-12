@@ -9,7 +9,7 @@ import syphym.project.productcrud.service.ProductService;
 import java.util.UUID;
 
 @RestController
-public class ProductControllerImpl {
+public class ProductControllerImpl implements ProductController{
 
     private final ProductService productService;
 
@@ -41,6 +41,11 @@ public class ProductControllerImpl {
     @ResponseBody
     public ProductResponse getAllOrderedProducts(@RequestParam String orderBy) {
         return productService.getProductsOrderBy(orderBy);
+    }
+
+    @Override
+    public ProductResponse getAllOrderProductByCriteria(String criteria) {
+        return productService.getAllOrderProductByCriteria(criteria);
     }
 
 }

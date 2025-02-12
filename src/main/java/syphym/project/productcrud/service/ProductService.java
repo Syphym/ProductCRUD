@@ -13,5 +13,7 @@ public interface ProductService {
 
     ProductResponse getProductsOrderBy(String order);
 
+    ProductResponse getAllOrderProductByCriteria(String criteria);
+
 
 }

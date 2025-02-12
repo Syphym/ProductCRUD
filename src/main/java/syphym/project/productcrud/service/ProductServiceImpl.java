@@ -6,7 +6,6 @@ import syphym.project.productcrud.dto.ProductResponse;
 import syphym.project.productcrud.entity.Product;
 import syphym.project.productcrud.repository.ProductRepository;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -75,6 +74,11 @@ public class ProductServiceImpl implements ProductService{
                 .messageCode("200 - Success")
                 .productDTO(productDTOS)
                 .build();
+    }
+
+    @Override
+    public ProductResponse getAllOrderProductByCriteria(String criteria) {
+        return null;
     }
 
 
